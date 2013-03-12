@@ -355,7 +355,15 @@ Bannery.window.Ad = function(config) {
 						fn:function(data) {
 							Ext.getCmp('currimg').setSrc(data.relativeUrl);
 							Ext.getCmp('image').setValue(data.relativeUrl);
-						}
+						}, scope:this
+					}, 'change' : {
+						fn:function(cb,nv) {
+							Ext.getCmp('image').setValue(nv);
+							this.fireEvent('select', {
+								relativeUrl:nv
+								,url:nv
+							});
+						},scope:this
 					}
 				}
 			},{
